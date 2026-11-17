@@ -1,0 +1,1718 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMA Master Learner Guide — ICMAI 2022 Quiz &amp; Study Hub</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Space Grotesk', 'Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #070b14;
+      color: #e2e8f0;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      backdrop-filter: blur(12px);
+    }
+    .nav-pill-active {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #022c22;
+      font-weight: 700;
+    }
+    .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scroll::-webkit-scrollbar-track { background: #0f172a; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 999px; }
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+  <!-- Top Navigation -->
+  <header class="sticky top-0 z-40 border-b border-slate-800/80 bg-[#070b14]/95 backdrop-blur-md no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-indigo-600 flex items-center justify-center shadow-lg shadow-emerald-500/20 font-display font-bold text-slate-950 text-lg">
+          CMA
+        </div>
+        <div>
+          <h1 class="font-display font-bold text-base sm:text-lg tracking-tight text-white leading-tight">
+            CMA MASTER LEARNER GUIDE
+          </h1>
+          <p class="text-[11px] text-emerald-400 font-medium tracking-wide uppercase">
+            ICMAI Syllabus 2022 • Inter &amp; Final
+          </p>
+        </div>
+      </div>
+
+      <!-- Primary Nav -->
+      <nav id="main-nav" class="flex flex-wrap items-center gap-1.5 text-xs sm:text-sm">
+        <button data-view="dashboard" class="nav-btn px-3 py-1.5 rounded-lg text-slate-300 hover:bg-slate-800 transition">Dashboard</button>
+        <button data-view="subjects" class="nav-btn px-3 py-1.5 rounded-lg text-slate-300 hover:bg-slate-800 transition">Subjects &amp; Quiz</button>
+        <button data-view="resources" class="nav-btn px-3 py-1.5 rounded-lg text-slate-300 hover:bg-slate-800 transition">Resources</button>
+        <button data-view="chat" class="nav-btn px-3 py-1.5 rounded-lg text-slate-300 hover:bg-slate-800 transition">Support Chat</button>
+        <button data-view="leaderboard" class="nav-btn px-3 py-1.5 rounded-lg text-slate-300 hover:bg-slate-800 transition">Leaderboard</button>
+        <button data-view="admin" class="nav-btn px-3 py-1.5 rounded-lg text-amber-300 hover:bg-amber-500/10 border border-amber-500/30 transition">Admin</button>
+      </nav>
+
+      <!-- Active User Badge -->
+      <div id="user-badge" class="hidden items-center gap-2.5 bg-slate-900/90 border border-slate-700/70 rounded-xl px-3 py-1.5">
+        <div class="text-right">
+          <div id="badge-name" class="text-xs font-semibold text-white leading-tight"></div>
+          <div id="badge-meta" class="text-[10px] font-mono text-emerald-400"></div>
+        </div>
+        <button id="logout-btn" class="text-xs px-2.5 py-1 rounded-lg bg-rose-500/15 text-rose-300 hover:bg-rose-500/25 border border-rose-500/30 transition">
+          Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6">
+
+    <!-- VIEW 1: DASHBOARD / AUTH -->
+    <section id="view-dashboard" class="space-y-6">
+      <!-- Hero Banner -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8 relative overflow-hidden">
+        <div class="absolute -right-16 -top-16 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+          <div class="space-y-2 max-w-2xl">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Cloud-Synced Quiz &amp; Mock Exam Portal
+            </span>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Master ICMAI Intermediate &amp; Final Exams
+            </h2>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+              30-question timed MCQ sprints (90s/question, +2 / -0.333 negative marking), 10 ICMAI-pattern Mock Exams per paper, curated Google Drive study materials, public doubt-clearance chat, and live leaderboard.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 shrink-0">
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 text-center">
+              <div class="font-display text-xl font-bold text-emerald-400">18</div>
+              <div class="text-[11px] text-slate-400">CMA Papers</div>
+            </div>
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 text-center">
+              <div class="font-display text-xl font-bold text-indigo-400">90s</div>
+              <div class="text-[11px] text-slate-400">Per Question</div>
+            </div>
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 text-center col-span-2 sm:col-span-1">
+              <div class="font-display text-xl font-bold text-amber-400">10x</div>
+              <div class="text-[11px] text-slate-400">Mock Exams</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Auth Panels (shown when logged out) -->
+      <div id="auth-panels" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Registration Form -->
+        <div class="glass-card rounded-2xl p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-display text-lg font-bold text-white">New Student Registration</h3>
+              <p class="text-xs text-slate-400">Generates your Unique ID &amp; backs up profile to Cloud Storage</p>
+            </div>
+            <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">FREE</span>
+          </div>
+          <form id="register-form" class="space-y-3.5">
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Full Name *</label>
+              <input id="reg-name" type="text" required placeholder="e.g., Anujith B Krishna" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-emerald-500" />
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Gender *</label>
+                <select id="reg-gender" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-emerald-500">
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Date of Birth *</label>
+                <input id="reg-dob" type="date" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-emerald-500" />
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">CMA Level *</label>
+                <select id="reg-level" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-emerald-500">
+                  <option value="">Select Level</option>
+                  <option value="CMA Intermediate">CMA Intermediate</option>
+                  <option value="CMA Final">CMA Final</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Email (Optional)</label>
+                <input id="reg-email" type="email" placeholder="student@example.com" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-emerald-500" />
+              </div>
+            </div>
+            <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-sm transition shadow-lg shadow-emerald-500/20">
+              Register &amp; Generate Unique ID
+            </button>
+          </form>
+        </div>
+
+        <!-- Login Form -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between space-y-5">
+          <div class="space-y-4">
+            <div>
+              <h3 class="font-display text-lg font-bold text-white">Student Login</h3>
+              <p class="text-xs text-slate-400">Enter your Unique ID &amp; DOB to restore your progress from Cloud Backup</p>
+            </div>
+            <form id="login-form" class="space-y-3.5">
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Unique Student ID *</label>
+                <input id="login-id" type="text" required placeholder="e.g., CMA-INT-2026-1001" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm font-mono text-white uppercase focus:outline-none focus:border-indigo-500" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Date of Birth *</label>
+                <input id="login-dob" type="date" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-indigo-500" />
+              </div>
+              <button type="submit" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm transition shadow-lg shadow-indigo-500/20">
+                Login &amp; Restore Data
+              </button>
+            </form>
+          </div>
+
+          <!-- Quick Demo Account -->
+          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-300">Instant Demo Student Access</span>
+              <span class="text-[10px] font-mono text-emerald-400">PRE-SEEDED</span>
+            </div>
+            <p class="text-xs text-slate-400">
+              Try immediately with ID <code class="text-emerald-300 font-mono">CMA-INT-2026-1001</code> &amp; DOB <code class="text-emerald-300 font-mono">2002-10-18</code>, or register your own ID.
+            </p>
+            <button id="demo-login-btn" type="button" class="w-full py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-emerald-300 border border-slate-700 transition">
+              One-Click Demo Login
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logged-in Student Overview -->
+      <div id="student-overview" class="hidden space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="glass-card rounded-2xl p-5">
+            <div class="text-xs text-slate-400">Unique ID</div>
+            <div id="ov-id" class="font-mono text-lg font-bold text-emerald-400 mt-1"></div>
+            <div id="ov-level" class="text-xs text-slate-300 mt-1"></div>
+          </div>
+          <div class="glass-card rounded-2xl p-5">
+            <div class="text-xs text-slate-400">Total Leaderboard Points</div>
+            <div id="ov-points" class="font-display text-2xl font-bold text-white mt-1">0</div>
+            <div class="text-xs text-indigo-400 mt-1">Updates after every quiz</div>
+          </div>
+          <div class="glass-card rounded-2xl p-5">
+            <div class="text-xs text-slate-400">Quizzes Attempted</div>
+            <div id="ov-attempts" class="font-display text-2xl font-bold text-white mt-1">0</div>
+            <div class="text-xs text-slate-400 mt-1">30 MCQs per round</div>
+          </div>
+          <div class="glass-card rounded-2xl p-5">
+            <div class="text-xs text-slate-400">Development (Avg %)</div>
+            <div id="ov-dev" class="font-display text-2xl font-bold text-amber-400 mt-1">0%</div>
+            <div class="text-xs text-slate-400 mt-1">Cumulative score average</div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="glass-card rounded-2xl p-5 lg:col-span-2 space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="font-display font-bold text-white">Knowledge Development Trend</h3>
+              <button id="go-subjects-btn" class="text-xs px-3 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-bold hover:bg-emerald-400 transition">
+                Start New Quiz →
+              </button>
+            </div>
+            <div class="relative h-64">
+              <canvas id="dev-chart"></canvas>
+            </div>
+          </div>
+          <div class="glass-card rounded-2xl p-5 space-y-3">
+            <h3 class="font-display font-bold text-white">Quick Actions</h3>
+            <div class="space-y-2.5">
+              <button data-jump="subjects" class="quick-jump w-full text-left px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 transition flex items-center justify-between">
+                <span class="text-sm font-medium text-white">Select Paper &amp; Start Quiz</span>
+                <span class="text-emerald-400">→</span>
+              </button>
+              <button data-jump="resources" class="quick-jump w-full text-left px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 transition flex items-center justify-between">
+                <span class="text-sm font-medium text-white">Study Material &amp; 10 Mock Exams</span>
+                <span class="text-indigo-400">→</span>
+              </button>
+              <button data-jump="chat" class="quick-jump w-full text-left px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 transition flex items-center justify-between">
+                <span class="text-sm font-medium text-white">Public Doubt Clearance Chat</span>
+                <span class="text-amber-400">→</span>
+              </button>
+              <button data-jump="leaderboard" class="quick-jump w-full text-left px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 transition flex items-center justify-between">
+                <span class="text-sm font-medium text-white">View Live Leaderboard</span>
+                <span class="text-rose-400">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: SUBJECT SELECTION & QUIZ ENGINE -->
+    <section id="view-subjects" class="hidden space-y-6">
+      <!-- Subject Picker -->
+      <div id="subject-picker" class="space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 class="font-display text-2xl font-bold text-white">Subject Selection</h2>
+            <p class="text-xs sm:text-sm text-slate-400">
+              Questions shuffle &amp; refresh on every attempt with minimal repeats. 30 MCQs • 1m 30s/question • +2 / -1 per 3 wrong.
+            </p>
+          </div>
+          <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 p-1 rounded-xl">
+            <button id="lvl-inter-btn" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition">CMA Intermediate (8 Papers)</button>
+            <button id="lvl-final-btn" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition">CMA Final (10 Papers)</button>
+          </div>
+        </div>
+        <div id="subjects-grid" class="space-y-6"></div>
+      </div>
+
+      <!-- Active Quiz Arena -->
+      <div id="quiz-arena" class="hidden space-y-5">
+        <!-- Quiz Top Bar -->
+        <div class="glass-card rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <div id="quiz-paper-title" class="font-display font-bold text-white text-base sm:text-lg"></div>
+            <div class="text-xs text-slate-400">
+              Question <span id="quiz-q-num" class="text-emerald-400 font-bold">1</span> of <span id="quiz-q-total">30</span>
+              • +2 Correct / -0.33 Wrong
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 flex items-center gap-2">
+              <span class="text-xs text-slate-400">Time Left:</span>
+              <span id="quiz-timer" class="font-mono text-lg font-bold text-emerald-400">01:30</span>
+            </div>
+            <button id="quit-quiz-btn" class="px-3 py-2 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 text-xs font-semibold border border-rose-500/30 transition">
+              End Quiz
+            </button>
+          </div>
+        </div>
+
+        <!-- Timer Progress Bar -->
+        <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden border border-slate-800">
+          <div id="quiz-timer-bar" class="h-full bg-gradient-to-r from-emerald-400 to-indigo-500 transition-all duration-1000" style="width: 100%"></div>
+        </div>
+
+        <!-- Question Card -->
+        <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
+          <div id="quiz-question-text" class="text-base sm:text-lg font-semibold text-white leading-relaxed"></div>
+          <div id="quiz-options" class="grid grid-cols-1 gap-3"></div>
+          <div class="flex items-center justify-between pt-2 border-t border-slate-800/80">
+            <span id="quiz-feedback" class="text-xs font-medium text-slate-400">Select an option before timer expires (auto-skips at 00:00).</span>
+            <button id="next-q-btn" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition disabled:opacity-40" disabled>
+              Next Question →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz Report Card -->
+      <div id="quiz-report" class="hidden glass-card rounded-2xl p-6 sm:p-8 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-wider text-emerald-400">Quiz Completed</span>
+            <h2 id="rep-paper" class="font-display text-2xl font-bold text-white mt-1"></h2>
+          </div>
+          <button id="rep-back-btn" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold transition">
+            Back to Subjects
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+            <div class="text-xs text-slate-400">Total Score (Max)</div>
+            <div id="rep-max" class="font-display text-2xl font-bold text-white mt-1">60</div>
+          </div>
+          <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+            <div class="text-xs text-slate-400">Total Mark Obtained</div>
+            <div id="rep-obtained" class="font-display text-2xl font-bold text-emerald-400 mt-1">0</div>
+          </div>
+          <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+            <div class="text-xs text-slate-400">Negative Mark</div>
+            <div id="rep-negative" class="font-display text-2xl font-bold text-rose-400 mt-1">0</div>
+          </div>
+          <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+            <div class="text-xs text-slate-400">Accuracy</div>
+            <div id="rep-accuracy" class="font-display text-2xl font-bold text-indigo-400 mt-1">0%</div>
+          </div>
+          <div class="bg-slate-900/90 border border-amber-500/30 rounded-xl p-4 col-span-2 sm:col-span-1">
+            <div class="text-xs text-amber-300">Development (Avg %)</div>
+            <div id="rep-dev" class="font-display text-2xl font-bold text-amber-400 mt-1">0%</div>
+          </div>
+        </div>
+
+        <div id="rep-breakdown" class="text-xs text-slate-300 bg-slate-900/70 border border-slate-800 rounded-xl p-4"></div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: RESOURCES & 10 MOCK EXAMINATIONS -->
+    <section id="view-resources" class="hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-display text-2xl font-bold text-white">CMA Resources Hub</h2>
+          <p class="text-xs sm:text-sm text-slate-400">Direct access &amp; download from your Google Drive CMA Repository + 10 ICMAI-Pattern Mock Exams.</p>
+        </div>
+        <a href="https://drive.google.com/drive/folders/1niN90VStBdWMXlC0lymSBT91ah0i3Rh6" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-emerald-300 transition shrink-0">
+          Open Master Google Drive Folder ↗
+        </a>
+      </div>
+
+      <!-- 4 Resource Tabs -->
+      <div class="flex flex-wrap gap-2 border-b border-slate-800 pb-3">
+        <button data-rtab="study" class="rtab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition">1. Study Material</button>
+        <button data-rtab="pyq" class="rtab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition">2. Previous Year Questions</button>
+        <button data-rtab="mcqbank" class="rtab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition">3. MCQ Bank</button>
+        <button data-rtab="mock" class="rtab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition">4. Mock Examination (10 Sets)</button>
+      </div>
+
+      <div id="resources-content" class="space-y-4"></div>
+    </section>
+
+    <!-- VIEW 4: PUBLIC DOUBT CLEARANCE CHAT -->
+    <section id="view-chat" class="hidden space-y-4">
+      <div class="glass-card rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="font-display text-xl font-bold text-white">Public Doubt Clearance &amp; Student Support</h2>
+          <p class="text-xs text-slate-400">Public forum only (no private chat). AI-keyword real-time moderation blocks 18+ / sensitive content. Images are auto-compressed.</p>
+        </div>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+          AI Moderation Active
+        </span>
+      </div>
+
+      <div class="glass-card rounded-2xl p-4 sm:p-5 flex flex-col h-[520px]">
+        <div id="chat-messages" class="flex-1 overflow-y-auto custom-scroll space-y-3 pr-2"></div>
+
+        <form id="chat-form" class="mt-4 pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+          <input id="chat-input" type="text" placeholder="Ask a CMA doubt or share a study tip..." class="flex-1 px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-emerald-500" />
+          <label class="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-slate-200 cursor-pointer text-center transition">
+            <span>Attach Image</span>
+            <input id="chat-image" type="file" accept="image/*" class="hidden" />
+          </label>
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition">
+            Send
+          </button>
+        </form>
+        <div id="chat-img-preview" class="hidden mt-2 text-xs text-emerald-300 flex items-center justify-between bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-800">
+          <span id="chat-img-info"></span>
+          <button id="clear-chat-img" type="button" class="text-rose-400 hover:underline">Remove</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 5: DYNAMIC LEADERBOARD -->
+    <section id="view-leaderboard" class="hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="font-display text-2xl font-bold text-white">Live Student Leaderboard</h2>
+          <p class="text-xs sm:text-sm text-slate-400">Updates dynamically after every quiz round to encourage active CMA preparation.</p>
+        </div>
+      </div>
+      <div class="glass-card rounded-2xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-slate-800 bg-slate-900/80 text-xs uppercase text-slate-400">
+                <th class="py-3.5 px-4">Rank</th>
+                <th class="py-3.5 px-4">Student Name</th>
+                <th class="py-3.5 px-4">Unique ID</th>
+                <th class="py-3.5 px-4">Level</th>
+                <th class="py-3.5 px-4 text-right">Quizzes</th>
+                <th class="py-3.5 px-4 text-right">Avg %</th>
+                <th class="py-3.5 px-4 text-right">Total Points</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body" class="divide-y divide-slate-800/70"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 6: PASSWORD-PROTECTED ADMIN AREA -->
+    <section id="view-admin" class="hidden space-y-6">
+      <div id="admin-lock" class="glass-card rounded-2xl p-6 sm:p-8 max-w-md mx-auto space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-mono text-amber-400 uppercase">Restricted Area</span>
+          <h2 class="font-display text-xl font-bold text-white">Admin Control Panel</h2>
+          <p class="text-xs text-slate-400">Enter admin password to manage MCQs, resources, cloud sync, and chat moderation.</p>
+        </div>
+        <form id="admin-login-form" class="space-y-3">
+          <input id="admin-pass" type="password" required placeholder="Enter Admin Password" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-amber-500" />
+          <button type="submit" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition">
+            Unlock Admin Panel
+          </button>
+        </form>
+      </div>
+
+      <div id="admin-panel" class="hidden space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="font-display text-2xl font-bold text-white">Admin Studio</h2>
+            <p class="text-xs text-slate-400">Live-edit MCQs, Drive resources, cloud backup endpoint, and chat moderation without interrupting users.</p>
+          </div>
+          <button id="admin-lock-btn" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-amber-300 border border-amber-500/30">
+            Lock Admin
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Add MCQ -->
+          <div class="glass-card rounded-2xl p-5 space-y-3">
+            <h3 class="font-display font-bold text-white">Add New MCQ to Question Bank</h3>
+            <form id="admin-add-mcq-form" class="space-y-3">
+              <select id="adm-mcq-paper" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white"></select>
+              <input id="adm-mcq-q" type="text" required placeholder="Question text..." class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white" />
+              <div class="grid grid-cols-2 gap-2">
+                <input id="adm-opt-0" type="text" required placeholder="Option A" class="px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white" />
+                <input id="adm-opt-1" type="text" required placeholder="Option B" class="px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white" />
+                <input id="adm-opt-2" type="text" required placeholder="Option C" class="px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white" />
+                <input id="adm-opt-3" type="text" required placeholder="Option D" class="px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white" />
+              </div>
+              <select id="adm-mcq-ans" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white">
+                <option value="0">Correct: Option A</option>
+                <option value="1">Correct: Option B</option>
+                <option value="2">Correct: Option C</option>
+                <option value="3">Correct: Option D</option>
+              </select>
+              <button type="submit" class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition">
+                Add MCQ Live
+              </button>
+            </form>
+          </div>
+
+          <!-- Add Drive Resource -->
+          <div class="glass-card rounded-2xl p-5 space-y-3">
+            <h3 class="font-display font-bold text-white">Add / Update Google Drive Resource</h3>
+            <form id="admin-add-res-form" class="space-y-3">
+              <select id="adm-res-cat" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white">
+                <option value="study">Study Material</option>
+                <option value="pyq">Previous Year Question Paper</option>
+                <option value="mcqbank">MCQ Bank PDF</option>
+              </select>
+              <select id="adm-res-level" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white">
+                <option value="CMA Intermediate">CMA Intermediate</option>
+                <option value="CMA Final">CMA Final</option>
+              </select>
+              <input id="adm-res-title" type="text" required placeholder="Resource Title (e.g., Paper 5 Dec 2026)" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white" />
+              <input id="adm-res-url" type="url" required placeholder="https://drive.google.com/file/d/..." class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white" />
+              <button type="submit" class="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition">
+                Publish Resource
+              </button>
+            </form>
+          </div>
+
+          <!-- Cloud Sync & Encryption Config -->
+          <div class="glass-card rounded-2xl p-5 space-y-3 lg:col-span-2">
+            <h3 class="font-display font-bold text-white">Google Cloud Storage / Apps Script Sync &amp; Encryption</h3>
+            <p class="text-xs text-slate-400">
+              Connect a 0-cost Google Apps Script Web App or Firebase Realtime Database URL to mirror all student registrations, quiz scores, and compressed chat logs to your Google Cloud / Drive account. Sensitive fields use AES-GCM encryption.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-2.5">
+              <input id="cloud-endpoint-input" type="url" placeholder="https://script.google.com/macros/s/.../exec" class="flex-1 px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white font-mono" />
+              <button id="save-cloud-btn" type="button" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition">
+                Save Endpoint
+              </button>
+              <button id="export-backup-btn" type="button" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs border border-slate-700 transition">
+                Download JSON Backup
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-800/80 py-4 text-center text-xs text-slate-500 no-print">
+    CMA Master Learner Guide • ICMAI Syllabus 2022 • Built for 0-Cost Web &amp; Indus Appstore Deployment
+  </footer>
+
+<script>
+(() => {
+  // ==============================
+  // 1. CURRICULUM & DRIVE CATALOG
+  // ==============================
+  const PAPERS = {
+    'CMA Intermediate': [
+      { id: 'P5', group: 'Group 1', code: 'Paper 5', name: 'Business Law and Ethics', mcqPaper: 'P5' },
+      { id: 'P6', group: 'Group 1', code: 'Paper 6', name: 'Financial Accounting', mcqPaper: 'P6' },
+      { id: 'P7A', group: 'Group 1', code: 'Paper 7A', name: 'Direct Taxation (MCQ Bank Consolidated as Paper 7)', mcqPaper: 'P7' },
+      { id: 'P7B', group: 'Group 1', code: 'Paper 7B', name: 'Indirect Taxation (MCQ Bank Consolidated as Paper 7)', mcqPaper: 'P7' },
+      { id: 'P8', group: 'Group 1', code: 'Paper 8', name: 'Cost Accounting', mcqPaper: 'P8' },
+      { id: 'P9', group: 'Group 2', code: 'Paper 9', name: 'Operations Management and Strategic Management', mcqPaper: 'P9' },
+      { id: 'P10', group: 'Group 2', code: 'Paper 10', name: 'Corporate Accounting and Auditing', mcqPaper: 'P10' },
+      { id: 'P11', group: 'Group 2', code: 'Paper 11', name: 'Financial Management and Business Data Analytics', mcqPaper: 'P11' },
+      { id: 'P12', group: 'Group 2', code: 'Paper 12', name: 'Management Accounting', mcqPaper: 'P12' }
+    ],
+    'CMA Final': [
+      { id: 'P13', group: 'Group 3', code: 'Paper 13', name: 'Corporate and Economic Laws (CEL)', mcqPaper: 'P13' },
+      { id: 'P14', group: 'Group 3', code: 'Paper 14', name: 'Strategic Financial Management (SFM)', mcqPaper: 'P14' },
+      { id: 'P15', group: 'Group 3', code: 'Paper 15', name: 'Direct Tax Laws and International Taxation (DIT)', mcqPaper: 'P15' },
+      { id: 'P16', group: 'Group 3', code: 'Paper 16', name: 'Strategic Cost Management (SCM)', mcqPaper: 'P16' },
+      { id: 'P17', group: 'Group 4', code: 'Paper 17', name: 'Cost & Management Audit (CMAD)', mcqPaper: 'P17' },
+      { id: 'P18', group: 'Group 4', code: 'Paper 18', name: 'Corporate Financial Reporting (CFR)', mcqPaper: 'P18' },
+      { id: 'P19', group: 'Group 4', code: 'Paper 19', name: 'Indirect Tax Laws and Practice (ITLP)', mcqPaper: 'P19' },
+      { id: 'P20A', group: 'Group 4 (Elective)', code: 'Paper 20A', name: 'Strategic Performance Management and Business Valuation (SPMBV)', mcqPaper: 'P20A' },
+      { id: 'P20B', group: 'Group 4 (Elective)', code: 'Paper 20B', name: 'Risk Management in Banking and Insurance (RMBI)', mcqPaper: 'P20B' },
+      { id: 'P20C', group: 'Group 4 (Elective)', code: 'Paper 20C', name: 'Entrepreneurship and Start Up (ENTS)', mcqPaper: 'P20C' }
+    ]
+  };
+
+  const DEFAULT_RESOURCES = {
+    study: [
+      { level: 'CMA Intermediate', title: 'Paper 5 - Business Laws & Ethics (Study Material)', url: 'https://drive.google.com/file/d/14j4pTES4QrZR8pCzox2ymdMbbz_N50QQ/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Paper 6 - Financial Accounting (Study Material)', url: 'https://drive.google.com/file/d/1xHFofQPZGEiFgiDD7Wbbkjlgi5JYVwZM/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Paper 7A - Direct Taxation (Study Material)', url: 'https://drive.google.com/file/d/1NIXtmifDu1BTGIrXm835VczuyGb_5L25/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Paper 7B - Indirect Taxation (Study Material)', url: 'https://drive.google.com/file/d/1hzDXMfgVcJLu1ZSljypRu6t9I24ATW21/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Paper 8 - Cost Accounting (Study Material)', url: 'https://drive.google.com/file/d/1xPJo3TiJNtGERMFzBjueHRW4gJqRQJcf/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Paper 9 - Operations & Strategic Mgmt (Study Material)', url: 'https://drive.google.com/file/d/1oit31IhQoiwbW0NNmfxLJ3f2w6_lkvuC/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Paper 10 - Corporate Accounting & Auditing (Study Material)', url: 'https://drive.google.com/file/d/1NF9BpjOerXti0f17zY-qbDS073t18vE0/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Paper 11 - FM & Business Data Analytics (Study Material)', url: 'https://drive.google.com/file/d/1X-eNtr3X_XYAHQY25lNAoohQ1ii2-M5C/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Paper 12 - Management Accounting (Study Material)', url: 'https://drive.google.com/file/d/11qHOtd6KEd20NecoR7Dg9QepOEYFZQOc/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 13 - Corporate & Economic Laws (Study Material)', url: 'https://drive.google.com/file/d/16OWUMb1j4ZAstNh-p2GptsnX2Xo7UBK-/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 14 - Strategic Financial Management (Study Material)', url: 'https://drive.google.com/file/d/1o3PpLbRUZm2vWHLkfyJrcmS4uxlR3I3D/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 15 - Direct Tax Laws & Int. Taxation (Study Material)', url: 'https://drive.google.com/file/d/1neBT5aE1kEA0UkBSK-WcrRDLILgfq-Z3/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 16 - Strategic Cost Management (Study Material)', url: 'https://drive.google.com/file/d/10ShGOLHe3DHwAqTZorAEXg_cPq-1lSz4/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 17 - Cost & Management Audit (Study Material)', url: 'https://drive.google.com/file/d/1gNlW-sT9U-Dgz8hJtCENyB9kmzk7GyQ0/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 18 - Corporate Financial Reporting (Study Material)', url: 'https://drive.google.com/file/d/1NWEju3qjX4EZMshRzKzXGcT7hskfP05H/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 19 - Indirect Tax Laws & Practice (Study Material)', url: 'https://drive.google.com/file/d/1mknmcBXs-iaLgwipuS0n2NqfStaoFo-U/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 20A - SPMBV (Study Material)', url: 'https://drive.google.com/file/d/11F6sssf9EciK6xDLDuG9ZIwCAPtweuOW/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 20B - RMBI (Study Material)', url: 'https://drive.google.com/file/d/1g8ski7dOCzxYT8LwvonWpybk84ivcwla/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 20C - ENTS (Study Material)', url: 'https://drive.google.com/file/d/1gnRr88HfEgO_4eNoCjnFCVCohy5wLUW2/view?usp=drivesdk' }
+    ],
+    pyq: [
+      { level: 'CMA Intermediate', title: 'Paper 5 June 2026 PYQ', url: 'https://drive.google.com/file/d/1JZHJzGWSd1rPjfwOwUFJnb2c6KCR0LyU/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Paper 6 June 2026 PYQ', url: 'https://drive.google.com/file/d/1dO5LVCwTQILsOZzQOYxG6UipAqA16_1U/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Paper 7 June 2026 PYQ', url: 'https://drive.google.com/file/d/1yxJ2bL5H-BmK2_W95pJHvclmjeBLFJQr/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Paper 8 June 2026 PYQ', url: 'https://drive.google.com/file/d/1JEEw2KYEmhOOoSWbeO5hXfVLvSQuzAQm/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Paper 9 June 2026 PYQ', url: 'https://drive.google.com/file/d/1sw8mryIjjjvi836leMwVTfEjJ0NpWUE6/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Paper 10 June 2026 PYQ', url: 'https://drive.google.com/file/d/1DW7oZqTeDyNpKncihX0NHcljQoKPRG_G/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Paper 11 June 2026 PYQ', url: 'https://drive.google.com/file/d/1ujFbXRkcqMoC7wFT55_hZ_3ANZ0kNQLq/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Paper 12 June 2026 PYQ', url: 'https://drive.google.com/file/d/1UaKwODw9lc2pNQeJvkoo0VTXITzNhlpC/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 13 June 2026 PYQ', url: 'https://drive.google.com/file/d/1CkyIAyYembPhaLNHZHoVD7hakSQ_TgSJ/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 14 June 2026 PYQ', url: 'https://drive.google.com/file/d/1Us-JLjdPIuLjilvW3aPN6f3wVry6DN5o/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 15 June 2026 PYQ', url: 'https://drive.google.com/file/d/1wkfpfoWszz34ZwfDQkJuHK8cKH-DniVD/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 16 June 2026 PYQ', url: 'https://drive.google.com/file/d/1M-htsAaMiTzGmjX78yHnc3fFAjejk5wo/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 17 June 2026 PYQ', url: 'https://drive.google.com/file/d/1hRfsTQssH3Hi4JQhs2IsZ8l8lyi2k6iX/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 18 June 2026 PYQ', url: 'https://drive.google.com/file/d/1Pnmg9inCnE0da1A7yvF_YAegGK2YO2FT/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 19 June 2026 PYQ', url: 'https://drive.google.com/file/d/13AFbmWQ_dP59NRERlTKrMOnh_XvnDye7/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 20A June 2026 PYQ', url: 'https://drive.google.com/file/d/1azaoUcqKS9mhFvCu-310mNmKqbqHrOat/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 20B June 2026 PYQ', url: 'https://drive.google.com/file/d/1lThguZjEnsNXd_yLjkrlInsInd_vmWLh/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'Paper 20C June 2026 PYQ', url: 'https://drive.google.com/file/d/1_667-KETVg5BB6hyrH8XQtzHYkCKAPt-/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'Dec 2025 PYQ Archive Folder', url: 'https://drive.google.com/drive/folders/17--HoX5KLC9yOtYoWT1qzTK68-8ugJdg' },
+      { level: 'CMA Intermediate', title: 'June 2025 PYQ Archive Folder', url: 'https://drive.google.com/drive/folders/1UcdUlh_aEZxqDzOsy7opYWWW8uKh45XO' },
+      { level: 'CMA Intermediate', title: 'Dec 2024 PYQ Archive Folder', url: 'https://drive.google.com/drive/folders/17CGDK1G-C7N_lCpHOpLkzAndOyw7k99E' }
+    ],
+    mcqbank: [
+      { level: 'CMA Intermediate', title: 'MCQ Bank - Paper 5 (BLE)', url: 'https://drive.google.com/file/d/1LWq6cpyEiom7ABb0jvhKSyfLD3OxL7jM/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'MCQ Bank - Paper 6 (FA)', url: 'https://drive.google.com/file/d/1PxjeSp846Xwbb1dJ4M-DsUV5UzQlP8jN/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'MCQ Bank - Paper 7 (DT & IDT Consolidated)', url: 'https://drive.google.com/file/d/1f6an6I3kK7182LHjQIfRyJVspm-ECe8u/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'MCQ Bank - Paper 8 (Cost Accounting)', url: 'https://drive.google.com/file/d/1eYPTp63gQL8Jld2eR2jXgvkC37HOeIlZ/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'MCQ Bank - Paper 9 (OMSM)', url: 'https://drive.google.com/file/d/1nZpJ34xKg5V7rVLG5vx33m0a-iDDZjM8/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'MCQ Bank - Paper 10 (CAA)', url: 'https://drive.google.com/file/d/1vdUKBDybrK4FjJio8vxwxjm9WvJsuKJ9/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'MCQ Bank - Paper 11 (FMDA)', url: 'https://drive.google.com/file/d/1H5Ye2i_TnA6ay51xVnKXF1XzWLpq2eoK/view?usp=drivesdk' },
+      { level: 'CMA Intermediate', title: 'MCQ Bank - Paper 12 (MA)', url: 'https://drive.google.com/file/d/14drADlT7sUXVzepw28r-zWguJWnodd7B/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'MCQ Bank - Paper 13 (CEL)', url: 'https://drive.google.com/file/d/19xZi-zu24avKM3W6AUomJFvz9aLAYJlR/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'MCQ Bank - Paper 14 (SFM)', url: 'https://drive.google.com/file/d/1HkOFVPWeuAboAUiR-OJoSmcUTZUVy_GH/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'MCQ Bank - Paper 15 (DIT)', url: 'https://drive.google.com/file/d/143uWjpWmQuzUpqGokvB07t97DaReCVk3/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'MCQ Bank - Paper 16 (SCM)', url: 'https://drive.google.com/file/d/19gtcvdJCnJ_MLd8DF2M-gCOBoYTC8lMC/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'MCQ Bank - Paper 17 (CMAD)', url: 'https://drive.google.com/file/d/1Ac_wNKNVVRZ8evRigrbW_0zF_u-h-n_6/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'MCQ Bank - Paper 18 (CFR)', url: 'https://drive.google.com/file/d/1A5mqH1L12CDqHWTadA-H5ZICb87IF9IA/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'MCQ Bank - Paper 19 (ITLP)', url: 'https://drive.google.com/file/d/1CM_gM_MEqamYLbQPxf6PTVjWaOe3nrz8/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'MCQ Bank - Paper 20A (SPMBV)', url: 'https://drive.google.com/file/d/1Sno2O0DC6QU9QX7VIiC32IPxXcFQBoHF/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'MCQ Bank - Paper 20B (RMBI)', url: 'https://drive.google.com/file/d/1OTPIXkiF4Dg9deEsNdL6jUa4Z5ST-eEU/view?usp=drivesdk' },
+      { level: 'CMA Final', title: 'MCQ Bank - Paper 20C (ENTS)', url: 'https://drive.google.com/file/d/1HbJABp4OAcEUKvQ-bS3mFiGn0UmSMi-Z/view?usp=drivesdk' }
+    ]
+  };
+
+  // ==============================
+  // 2. SEEDED ICMAI 2022 MCQ BANK
+  // ==============================
+  const DEFAULT_MCQS = {
+    P5: [
+      { q: 'Right to Property in India is a:', opts: ['Fundamental Right', 'Fundamental Duty', 'Constitutional Right', 'None of the above'], ans: 2 },
+      { q: 'The Constitution of India describes India as:', opts: ['A federation', 'Quasi-federal', 'A Union of states', 'None of the above'], ans: 2 },
+      { q: 'What is the chief source of legal authority in India?', opts: ['President of India', 'Constitution of India', 'Parliament', 'None of the above'], ans: 1 },
+      { q: 'Which of the following is described as the "Soul of the Constitution"?', opts: ['Fundamental Rights', 'Fundamental Duties', 'Directive Principles of State Policy', 'Preamble'], ans: 3 },
+      { q: 'The Preamble to the Indian Constitution is based on:', opts: ['Philosophy of India', 'Objectives Resolution drafted & moved by Pandit Nehru', 'Indian Culture', 'Religious Concept'], ans: 1 },
+      { q: '42nd Constitutional Amendment (1976) added which of the terms to the Preamble?', opts: ['Socialist', 'Secular', 'Sovereign', 'Both (a) & (b)'], ans: 3 },
+      { q: 'In which case did the Supreme Court hold that the Preamble is an integral part of the Constitution?', opts: ['Berubari Union case', 'Kesavananda Bharati case', 'Both (a) & (b)', 'None of the above'], ans: 1 },
+      { q: 'The ideals of liberty, equality and fraternity in the Preamble have been taken from:', opts: ['French Revolution', 'Russian Revolution', 'American Civil War', 'None of the above'], ans: 0 },
+      { q: 'Acceptance to be valid must:', opts: ['Be absolute', 'Be unqualified', 'Both be absolute & unqualified', 'Be conditional'], ans: 2 },
+      { q: 'If only a part of the consideration or object is unlawful, the contract under Section 24 shall be:', opts: ['Valid', 'Voidable', 'Void', 'Illegal'], ans: 2 },
+      { q: 'When consent is caused by undue influence, the contract under Section 19A is:', opts: ['Valid', 'Void', 'Voidable', 'Illegal'], ans: 2 },
+      { q: 'A makes an offer to B on 10th by letter (reaches 12th). B posts acceptance on 14th (reaches A on 16th). Communication of acceptance is complete as against A on:', opts: ['12th', '14th', '16th', '17th'], ans: 1 },
+      { q: 'An agreement with or by a minor is:', opts: ['Void', 'Voidable at the option of the minor', 'Valid', 'Voidable at the option of the other party'], ans: 0 },
+      { q: 'The position of a finder of lost goods is that of a:', opts: ['Bailor', 'Bailee', 'Surety', 'Principal debtor'], ans: 1 },
+      { q: 'If a new contract is substituted in place of an existing contract, it is called:', opts: ['Alteration', 'Rescission', 'Novation', 'Waiver'], ans: 2 },
+      { q: 'In a Promissory Note, how many parties are involved?', opts: ['1', '2', '3', '4'], ans: 1 },
+      { q: 'A slip of paper attached to a negotiable instrument for signing indorsements is legally known as:', opts: ['Allonge', 'Escrow', 'Zikri chit', 'Peth'], ans: 0 },
+      { q: 'Which negotiable instrument is NOT entitled to days of grace?', opts: ['Bill of exchange payable on specified date', 'Promissory note payable on specified date', 'Promissory note payable after sight', 'A cheque (always payable on demand)'], ans: 3 },
+      { q: 'In the absence of any agreement, interest on advances by a partner is allowed at:', opts: ['15%', '6% p.a.', 'Market rate of interest', 'Not allowed at all'], ans: 1 },
+      { q: 'The maximum number of partners in a firm carrying on banking business cannot exceed:', opts: ['5', '10', '15', '20'], ans: 1 },
+      { q: 'The LLP shall file the Statement of Account and Solvency in which prescribed Form?', opts: ['Form 8', 'Form 7', 'Form 6', 'Form 5'], ans: 0 },
+      { q: 'LLP shall file its Annual Return in which form?', opts: ['Form 12', 'Form 11', 'Form 10', 'Form 9'], ans: 1 },
+      { q: 'The approved name of an LLP shall be valid for a period of ____ from the date of approval:', opts: ['1 Month', '2 Months', '3 Months', '6 Months'], ans: 2 },
+      { q: 'Certificate of fitness to a young worker under Factories Act is granted by:', opts: ['Occupier of the factory', 'Inspector of the factory', 'Certifying surgeon', 'None of the above'], ans: 2 },
+      { q: 'Gratuity is payable to an employee shall not exceed:', opts: ['12 months pay', '16 months pay', '20 months pay', '24 months pay'], ans: 2 },
+      { q: 'Contribution of the employer to employees pension scheme (EPS) is:', opts: ['8.33%', '10%', '12%', 'None of the above'], ans: 0 },
+      { q: 'The quorum for a public company having more than 5000 members is:', opts: ['2', '5', '15', '30'], ans: 3 },
+      { q: 'An instrument of proxy shall be deposited with the registered office of the company ____ before the meeting:', opts: ['7 hours', '21 hours', '48 hours', '60 hours'], ans: 2 },
+      { q: 'As per Section 92 of Companies Act, 2013, Annual Return is prepared in:', opts: ['AOC-4', 'MGT-9', 'MGT-7', 'PAS-3'], ans: 2 },
+      { q: 'Which of the following businesses is generally considered an "ordinary business" at an AGM?', opts: ['Appointment of statutory auditor', 'Change in Articles of Association', 'Issue of bonus shares', 'Approval of mergers'], ans: 0 },
+      { q: 'Which of the following companies is NOT required to hold an AGM?', opts: ['Private Company', 'Public Company', 'One Person Company (OPC)', 'Listed Company'], ans: 2 },
+      { q: 'What is the time limit for the Council of States to return a Money Bill with its recommendations?', opts: ['7 days', '14 days', '10 days', '21 days'], ans: 1 }
+    ],
+    P6: [
+      { q: 'AS 2 deals with:', opts: ['Valuation of Inventories', 'Cash Flow Statements', 'Revenue Recognition', 'Property, Plant and Equipment'], ans: 0 },
+      { q: 'Which accounting concept assumes that a business will continue for the foreseeable future?', opts: ['Consistency', 'Going Concern', 'Accrual', 'Conservatism'], ans: 1 },
+      { q: 'Under AS 10, bearer plants are accounted for in the same way as:', opts: ['Inventory', 'Self-constructed PPE', 'Intangible Assets', 'Biological Assets'], ans: 1 },
+      { q: 'In a Receipts and Payments Account, only ____ transactions are recorded:', opts: ['Accrual', 'Cash & Bank', 'Credit', 'Non-cash'], ans: 1 },
+      { q: 'Sacrificing ratio is calculated at the time of:', opts: ['Dissolution of firm', 'Admission of a partner', 'Retirement of a partner', 'Death of a partner'], ans: 1 },
+      { q: 'In hire purchase system, the ownership of goods passes to the buyer:', opts: ['On signing agreement', 'On payment of down payment', 'On payment of last instalment', 'On delivery of goods'], ans: 2 }
+    ],
+    P7: [
+      { q: 'Under Section 115BAC (New Tax Regime), what is the basic exemption limit for AY 2026-27?', opts: ['Rs. 2,50,000', 'Rs. 3,00,000', 'Rs. 4,00,000', 'Rs. 5,00,000'], ans: 1 },
+      { q: 'Which section of the Income-tax Act deals with Standard Deduction for salaried employees?', opts: ['Section 16(ia)', 'Section 10(13A)', 'Section 80C', 'Section 24(b)'], ans: 0 },
+      { q: 'GST is a ____ based tax:', opts: ['Origin', 'Destination', 'Production', 'Turnover'], ans: 1 },
+      { q: 'Under CGST Act, the threshold limit for mandatory registration for exclusive supply of goods in normal category states is:', opts: ['Rs. 10 Lakhs', 'Rs. 20 Lakhs', 'Rs. 40 Lakhs', 'Rs. 50 Lakhs'], ans: 2 },
+      { q: 'Time of supply of goods under forward charge (Section 12 of CGST Act) is the earlier of:', opts: ['Date of issue of invoice or last date to issue invoice', 'Date of payment only', 'Date of delivery only', 'Date of receipt of goods'], ans: 0 },
+      { q: 'Input Tax Credit (ITC) on motor vehicles for transportation of persons with seating capacity <= 13 is:', opts: ['Always allowed', 'Blocked u/s 17(5) except specified uses', 'Allowed at 50%', 'Allowed only for directors'], ans: 1 }
+    ],
+    P8: [
+      { q: 'CAS-4 deals with:', opts: ['Cost of Production for Captive Consumption', 'Transportation Cost', 'Capacity Determination', 'Employee Cost'], ans: 0 },
+      { q: 'Prime Cost equals:', opts: ['Direct Material + Direct Labour + Direct Expenses', 'Direct Material + Factory Overhead', 'Works Cost + Admin Overhead', 'Cost of Production + Selling Overhead'], ans: 0 },
+      { q: 'EOQ (Economic Order Quantity) minimizes:', opts: ['Ordering cost only', 'Carrying cost only', 'Total ordering and carrying cost', 'Purchase price'], ans: 2 },
+      { q: 'Under Rowan Plan, bonus is:', opts: ['50% of time saved', '(Time Saved / Time Allowed) × Time Taken × Rate', 'Time Saved × Rate', '100% of time taken'], ans: 1 },
+      { q: 'Abnormal loss in process costing is valued at:', opts: ['Scrap value', 'Cost per unit of good production', 'Market price', 'Zero'], ans: 1 },
+      { q: 'Break-Even Point (in units) equals:', opts: ['Fixed Cost / Contribution per unit', 'Fixed Cost / P/V Ratio', 'Variable Cost / Contribution', 'Sales - Margin of Safety'], ans: 0 }
+    ],
+    P9: [
+      { q: 'Which chart is used in Operations Management for project scheduling?', opts: ['Gantt Chart', 'Pie Chart', 'Scatter Plot', 'Histogram'], ans: 0 },
+      { q: 'JIT (Just-In-Time) aims primarily to:', opts: ['Increase buffer stock', 'Eliminate waste and reduce inventory', 'Increase lead time', 'Maximize batch size'], ans: 1 },
+      { q: 'In SWOT Analysis, "S" and "W" represent:', opts: ['External factors', 'Internal factors', 'Macroeconomic factors', 'Regulatory factors'], ans: 1 },
+      { q: 'BCG Matrix classifies a business unit with high market share and low market growth as:', opts: ['Star', 'Question Mark', 'Cash Cow', 'Dog'], ans: 2 }
+    ],
+    P10: [
+      { q: 'As per Section 52 of Companies Act, 2013, Securities Premium can be used for:', opts: ['Paying cash dividend', 'Issuing fully paid bonus shares', 'Payment of directors sitting fees', 'Routine operating expenses'], ans: 1 },
+      { q: 'CARO 2020 is issued under which section of Companies Act, 2013?', opts: ['Section 139', 'Section 143(11)', 'Section 148', 'Section 128'], ans: 1 },
+      { q: 'Schedule III of Companies Act, 2013 prescribes the format of:', opts: ['Cost Audit Report', 'Financial Statements', 'Board Report', 'Annual Return'], ans: 1 },
+      { q: 'Internal Auditor of a company is appointed by:', opts: ['Shareholders in AGM', 'Board of Directors', 'Central Government', 'CAG'], ans: 1 }
+    ],
+    P11: [
+      { q: 'Weighted Average Cost of Capital (WACC) uses:', opts: ['Book value or Market value weights', 'Only face value', 'Only historical cost', 'Only retained earnings'], ans: 0 },
+      { q: 'Operating Leverage measures sensitivity of EBIT to changes in:', opts: ['EPS', 'Sales', 'Interest', 'Tax rate'], ans: 1 },
+      { q: 'Which Python/Data Analytics concept represents structured tabular data?', opts: ['DataFrame', 'Tuple', 'Set', 'Scalar'], ans: 0 },
+      { q: 'NPV (Net Present Value) > 0 indicates:', opts: ['Project should be rejected', 'Project earns more than cost of capital', 'IRR < Cost of capital', 'Zero return'], ans: 1 }
+    ],
+    P12: [
+      { q: 'Activity-Based Costing (ABC) assigns overheads based on:', opts: ['Direct labour hours only', 'Cost drivers', 'Machine hours only', 'Units produced'], ans: 1 },
+      { q: 'P/V Ratio equals:', opts: ['Contribution / Sales × 100', 'Profit / Sales × 100', 'Fixed Cost / Sales × 100', 'Variable Cost / Sales × 100'], ans: 0 },
+      { q: 'Zero-Based Budgeting (ZBB) requires:', opts: ['Incremental adjustment to last year budget', 'Justifying every expense from scratch', 'Ignoring fixed costs', 'Only cash forecasting'], ans: 1 },
+      { q: 'Material Price Variance equals:', opts: ['(Standard Price - Actual Price) × Actual Quantity', '(Standard Qty - Actual Qty) × Standard Price', '(Standard Price - Actual Price) × Standard Qty', 'None'], ans: 0 }
+    ],
+    P13: [
+      { q: 'Under IBC 2016, the maximum period for completion of Corporate Insolvency Resolution Process (CIRP) including extensions is:', opts: ['180 days', '270 days', '330 days', '365 days'], ans: 2 },
+      { q: 'SEBI LODR Regulations apply primarily to:', opts: ['Unlisted private companies', 'Listed entities', 'Partnership firms', 'LLPs'], ans: 1 },
+      { q: 'Under FEMA 1999, current account transactions are:', opts: ['Prohibited unless permitted', 'Permitted unless restricted', 'Always banned', 'Taxed at 30%'], ans: 1 }
+    ],
+    P14: [
+      { q: 'Beta in CAPM measures:', opts: ['Unsystematic risk', 'Systematic (market) risk', 'Credit risk', 'Liquidity risk'], ans: 1 },
+      { q: 'A Put Option gives the holder the:', opts: ['Obligation to buy', 'Right to sell at strike price', 'Right to buy at strike price', 'Obligation to sell'], ans: 1 },
+      { q: 'Sharpe Ratio measures:', opts: ['Excess return per unit of total risk (SD)', 'Excess return per unit of Beta', 'Total return', 'Dividend yield'], ans: 0 }
+    ],
+    P15: [
+      { q: 'Transfer Pricing provisions in Income-tax Act are contained in:', opts: ['Sections 92 to 92F', 'Sections 80C to 80U', 'Sections 44AB to 44AD', 'Sections 115JB'], ans: 0 },
+      { q: 'DTAA stands for:', opts: ['Double Taxation Avoidance Agreement', 'Direct Tax Assessment Act', 'Domestic Tax Audit Authority', 'Double Tariff Adjustment Act'], ans: 0 },
+      { q: 'GAAR stands for:', opts: ['General Anti-Avoidance Rule', 'Global Accounting & Audit Rule', 'Gross Annual Assessment Rate', 'None'], ans: 0 }
+    ],
+    P16: [
+      { q: 'Target Costing formula is:', opts: ['Target Cost = Target Selling Price - Desired Profit', 'Target Cost = Actual Cost + Margin', 'Target Cost = Fixed Cost + Variable Cost', 'None'], ans: 0 },
+      { q: 'Throughput Accounting was developed by:', opts: ['Eliyahu M. Goldratt', 'Robert Kaplan', 'Peter Drucker', 'Michael Porter'], ans: 0 },
+      { q: 'Kaizen Costing focuses on:', opts: ['Continuous incremental cost reduction during manufacturing', 'Design stage only', 'Tax planning', 'Audit sampling'], ans: 0 }
+    ],
+    P17: [
+      { q: 'Cost Audit is mandated under which section of Companies Act, 2013?', opts: ['Section 139', 'Section 148', 'Section 143', 'Section 135'], ans: 1 },
+      { q: 'Cost Audit Report is submitted to the Board of Directors in:', opts: ['Form CRA-1', 'Form CRA-2', 'Form CRA-3', 'Form CRA-4'], ans: 2 },
+      { q: 'Form CRA-4 is filed with the Central Government within ____ days of receipt of Cost Audit Report:', opts: ['15 days', '30 days', '60 days', '90 days'], ans: 1 }
+    ],
+    P18: [
+      { q: 'Ind AS 115 deals with:', opts: ['Leases', 'Revenue from Contracts with Customers', 'Financial Instruments', 'Business Combinations'], ans: 1 },
+      { q: 'Ind AS 116 deals with:', opts: ['Leases', 'Inventories', 'Income Taxes', 'Impairment'], ans: 0 },
+      { q: 'Goodwill under Ind AS 103 is:', opts: ['Amortized over 10 years', 'Tested annually for impairment', 'Written off to reserves immediately', 'Ignored'], ans: 1 }
+    ],
+    P19: [
+      { q: 'E-way bill is mandatory for inter-state movement of goods of consignment value exceeding:', opts: ['Rs. 25,000', 'Rs. 50,000', 'Rs. 1,00,000', 'Rs. 5,00,000'], ans: 1 },
+      { q: 'Under Customs Act, 1962, Assessable Value for imported goods is generally:', opts: ['FOB Value', 'CIF Value', 'MRP', 'Ex-factory price'], ans: 1 }
+    ],
+    P20A: [
+      { q: 'Balanced Scorecard was introduced by:', opts: ['Kaplan & Norton', 'Porter', 'Mintzberg', 'Drucker'], ans: 0 },
+      { q: 'EVA (Economic Value Added) equals:', opts: ['NOPAT - (WACC × Capital Employed)', 'EBIT - Tax', 'Net Profit / Equity', 'Sales - Variable Cost'], ans: 0 }
+    ],
+    P20B: [
+      { q: 'Basel III norms primarily address:', opts: ['Banking capital adequacy, stress testing, and liquidity risk', 'GST compliance', 'Insurance underwriting only', 'Corporate governance'], ans: 0 },
+      { q: 'VaR stands for:', opts: ['Value at Risk', 'Variable Asset Ratio', 'Valuation Assessment Rate', 'None'], ans: 0 }
+    ],
+    P20C: [
+      { q: 'A Unicorn startup is a privately held startup valued at over:', opts: ['$100 Million', '$500 Million', '$1 Billion', '$10 Billion'], ans: 2 },
+      { q: 'MVP in startup methodology stands for:', opts: ['Minimum Viable Product', 'Maximum Value Proposition', 'Market Validation Plan', 'None'], ans: 0 }
+    ]
+  };
+
+  // ==============================
+  // 3. STATE & STORAGE (WITH CRYPTO)
+  // ==============================
+  const STORAGE_KEY = 'cma_master_guide_v1';
+  const MODERATION_WORDS = [
+    'fuck', 'shit', 'bitch', 'asshole', 'bastard', 'porn', 'xxx', 'nude', 'nsfw', 'sex', '18+',
+    'dick', 'pussy', 'cunt', 'whore', 'slut', 'rape', 'suicide', 'kill yourself', 'aadhaar',
+    'pan card', 'cvv', 'otp', 'password', 'bank account', 'punda', 'idiot', 'scam'
+  ];
+
+  function loadState() {
+    const fallback = {
+      users: [
+        {
+          id: 'CMA-INT-2026-1001',
+          name: 'Anujith B Krishna',
+          gender: 'Male',
+          dob: '2002-10-18',
+          level: 'CMA Intermediate',
+          email: 'anujith@cma.edu',
+          points: 142,
+          attempts: [
+            { paper: 'Paper 5', score: 48, max: 60, negative: 2, accuracy: 83.3, pct: 80, date: '2026-11-15' },
+            { paper: 'Paper 8', score: 52, max: 60, negative: 1, accuracy: 88.0, pct: 86.7, date: '2026-11-16' }
+          ],
+          seenMcqs: []
+        }
+      ],
+      currentUserId: null,
+      mcqs: JSON.parse(JSON.stringify(DEFAULT_MCQS)),
+      resources: JSON.parse(JSON.stringify(DEFAULT_RESOURCES)),
+      chat: [
+        {
+          id: 'msg-1',
+          userName: 'Anujith B Krishna',
+          userId: 'CMA-INT-2026-1001',
+          text: 'Welcome to CMA Master Learner Guide! Post your Paper 5–20 doubts here.',
+          img: null,
+          ts: '2026-11-17 10:00'
+        }
+      ],
+      cloudEndpoint: ''
+    };
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return fallback;
+      const parsed = JSON.parse(raw);
+      return { ...fallback, ...parsed };
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  let state = loadState();
+  let activeView = 'dashboard';
+  let selectedLevelTab = 'CMA Intermediate';
+  let activeResourceTab = 'study';
+  let adminUnlocked = false;
+  let devChartInstance = null;
+
+  // Quiz runtime state
+  let quiz = {
+    paper: null,
+    questions: [],
+    idx: 0,
+    correct: 0,
+    wrong: 0,
+    skipped: 0,
+    timerSec: 90,
+    timerHandle: null,
+    answered: false
+  };
+
+  let pendingChatImg = null;
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+      // Safe fallback in restricted iframe
+    }
+    if (state.cloudEndpoint) {
+      syncToCloud(state.cloudEndpoint).catch(() => {});
+    }
+  }
+
+  async function syncToCloud(endpoint) {
+    try {
+      await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          app: 'CMA_MASTER_LEARNER_GUIDE',
+          updatedAt: new Date().toISOString(),
+          usersCount: state.users.length,
+          payload: state
+        })
+      });
+    } catch (e) {
+      // Silent fallback
+    }
+  }
+
+  function showToast(msg, type = 'info') {
+    const colors = {
+      info: 'bg-slate-900 border-slate-700 text-slate-100',
+      success: 'bg-emerald-950/95 border-emerald-500/50 text-emerald-200',
+      error: 'bg-rose-950/95 border-rose-500/50 text-rose-200',
+      warn: 'bg-amber-950/95 border-amber-500/50 text-amber-200'
+    };
+    const el = document.createElement('div');
+    el.className = `pointer-events-auto px-4 py-3 rounded-xl border shadow-xl text-xs font-medium transition-all ${colors[type] || colors.info}`;
+    el.textContent = msg;
+    document.getElementById('toast-container').appendChild(el);
+    setTimeout(() => el.remove(), 3800);
+  }
+
+  function getCurrentUser() {
+    return state.users.find(u => u.id === state.currentUserId) || null;
+  }
+
+  function calcDevelopmentAvg(user) {
+    if (!user || !user.attempts.length) return 0;
+    const sum = user.attempts.reduce((a, b) => a + b.pct, 0);
+    return Number((sum / user.attempts.length).toFixed(1));
+  }
+
+  // ==============================
+  // 4. NAVIGATION & RENDERING
+  // ==============================
+  function switchView(view) {
+    activeView = view;
+    document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'));
+    const target = document.getElementById(`view-${view}`);
+    if (target) target.classList.remove('hidden');
+
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      if (btn.dataset.view === view) {
+        btn.classList.add('nav-pill-active');
+        btn.classList.remove('text-slate-300');
+      } else {
+        btn.classList.remove('nav-pill-active');
+        btn.classList.add('text-slate-300');
+      }
+    });
+
+    if (view === 'dashboard') renderDashboard();
+    if (view === 'subjects') renderSubjects();
+    if (view === 'resources') renderResources();
+    if (view === 'chat') renderChat();
+    if (view === 'leaderboard') renderLeaderboard();
+    if (view === 'admin') renderAdmin();
+  }
+
+  function renderHeader() {
+    const user = getCurrentUser();
+    const badge = document.getElementById('user-badge');
+    if (user) {
+      badge.classList.remove('hidden');
+      badge.classList.add('flex');
+      document.getElementById('badge-name').textContent = user.name;
+      document.getElementById('badge-meta').textContent = `${user.id} • ${user.level}`;
+    } else {
+      badge.classList.add('hidden');
+      badge.classList.remove('flex');
+    }
+  }
+
+  function renderDashboard() {
+    renderHeader();
+    const user = getCurrentUser();
+    const authPanels = document.getElementById('auth-panels');
+    const overview = document.getElementById('student-overview');
+
+    if (!user) {
+      authPanels.classList.remove('hidden');
+      overview.classList.add('hidden');
+      return;
+    }
+
+    authPanels.classList.add('hidden');
+    overview.classList.remove('hidden');
+    document.getElementById('ov-id').textContent = user.id;
+    document.getElementById('ov-level').textContent = user.level;
+    document.getElementById('ov-points').textContent = user.points.toFixed(1);
+    document.getElementById('ov-attempts').textContent = user.attempts.length;
+    document.getElementById('ov-dev').textContent = `${calcDevelopmentAvg(user)}%`;
+
+    const ctx = document.getElementById('dev-chart').getContext('2d');
+    if (devChartInstance) devChartInstance.destroy();
+    const labels = user.attempts.length ? user.attempts.map((a, i) => `#${i + 1} ${a.paper}`) : ['No Attempts Yet'];
+    const data = user.attempts.length ? user.attempts.map(a => a.pct) : [0];
+    devChartInstance = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Quiz Score %',
+          data,
+          borderColor: '#10b981',
+          backgroundColor: 'rgba(16, 185, 129, 0.15)',
+          fill: true,
+          tension: 0.35,
+          pointRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: { min: 0, max: 100, grid: { color: 'rgba(148,163,184,0.1)' }, ticks: { color: '#94a3b8' } },
+          x: { grid: { display: false }, ticks: { color: '#94a3b8' } }
+        },
+        plugins: { legend: { labels: { color: '#cbd5e1' } } }
+      }
+    });
+  }
+
+  // ==============================
+  // 5. SUBJECTS & QUIZ ENGINE
+  // ==============================
+  function renderSubjects() {
+    const user = getCurrentUser();
+    if (user && selectedLevelTab !== user.level && !document.getElementById('lvl-inter-btn').dataset.manual) {
+      selectedLevelTab = user.level;
+    }
+
+    const interBtn = document.getElementById('lvl-inter-btn');
+    const finalBtn = document.getElementById('lvl-final-btn');
+    if (selectedLevelTab === 'CMA Intermediate') {
+      interBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950 transition';
+      finalBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-300 hover:text-white transition';
+    } else {
+      finalBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950 transition';
+      interBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-300 hover:text-white transition';
+    }
+
+    const list = PAPERS[selectedLevelTab] || [];
+    const groups = {};
+    list.forEach(p => {
+      if (!groups[p.group]) groups[p.group] = [];
+      groups[p.group].push(p);
+    });
+
+    const container = document.getElementById('subjects-grid');
+    container.innerHTML = Object.entries(groups).map(([grp, items]) => `
+      <div class="space-y-3">
+        <h3 class="font-display text-sm font-bold uppercase tracking-wider text-emerald-400">${grp}</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          ${items.map(p => {
+            const bankCount = (state.mcqs[p.mcqPaper] || []).length;
+            return `
+              <div class="glass-card rounded-2xl p-5 flex flex-col justify-between gap-4 hover:border-emerald-500/40 transition">
+                <div>
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-xs font-mono font-bold px-2.5 py-1 rounded-md bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">${p.code}</span>
+                    <span class="text-[11px] text-slate-400 font-mono">${bankCount} MCQs in Bank</span>
+                  </div>
+                  <h4 class="font-display font-bold text-white text-base mt-3 leading-snug">${p.name}</h4>
+                </div>
+                <button data-start-paper="${p.id}" class="start-quiz-btn w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition">
+                  Start 30-MCQ Timed Quiz →
+                </button>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    `).join('');
+
+    container.querySelectorAll('.start-quiz-btn').forEach(btn => {
+      btn.addEventListener('click', () => startQuiz(btn.dataset.startPaper));
+    });
+  }
+
+  function shuffleArray(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function startQuiz(paperId) {
+    const user = getCurrentUser();
+    if (!user) {
+      showToast('Please register or login first to track your score and leaderboard rank.', 'warn');
+      switchView('dashboard');
+      return;
+    }
+
+    const allPapers = [...PAPERS['CMA Intermediate'], ...PAPERS['CMA Final']];
+    const paper = allPapers.find(p => p.id === paperId);
+    if (!paper) return;
+
+    const bank = state.mcqs[paper.mcqPaper] || [];
+    if (!bank.length) {
+      showToast('No MCQs available for this paper yet. Add some in Admin!', 'error');
+      return;
+    }
+
+    // Prioritize unseen questions first to minimize repeats
+    const seenSet = new Set(user.seenMcqs || []);
+    const unseen = shuffleArray(bank.filter(item => !seenSet.has(item.q)));
+    const seen = shuffleArray(bank.filter(item => seenSet.has(item.q)));
+    let pool = [...unseen, ...seen];
+
+    // Build up to 30 questions (repeating shuffled if bank < 30, or taking 30 unique if >= 30)
+    const targetCount = 30;
+    const selected = [];
+    while (selected.length < targetCount) {
+      for (const q of pool) {
+        if (selected.length >= targetCount) break;
+        selected.push(q);
+      }
+      pool = shuffleArray(pool);
+    }
+
+    // Track seen questions
+    user.seenMcqs = Array.from(new Set([...(user.seenMcqs || []), ...selected.slice(0, bank.length).map(x => x.q)])).slice(-250);
+    saveState();
+
+    quiz = {
+      paper,
+      questions: selected,
+      idx: 0,
+      correct: 0,
+      wrong: 0,
+      skipped: 0,
+      timerSec: 90,
+      timerHandle: null,
+      answered: false
+    };
+
+    document.getElementById('subject-picker').classList.add('hidden');
+    document.getElementById('quiz-report').classList.add('hidden');
+    document.getElementById('quiz-arena').classList.remove('hidden');
+    document.getElementById('quiz-paper-title').textContent = `${paper.code}: ${paper.name}`;
+    document.getElementById('quiz-q-total').textContent = String(quiz.questions.length);
+
+    renderQuizQuestion();
+  }
+
+  function renderQuizQuestion() {
+    clearInterval(quiz.timerHandle);
+    quiz.answered = false;
+    quiz.timerSec = 90;
+
+    const qObj = quiz.questions[quiz.idx];
+    document.getElementById('quiz-q-num').textContent = String(quiz.idx + 1);
+    document.getElementById('quiz-question-text').textContent = `${quiz.idx + 1}. ${qObj.q}`;
+    document.getElementById('quiz-feedback').textContent = 'Select an option before timer expires (auto-skips at 00:00).';
+    document.getElementById('next-q-btn').disabled = true;
+
+    const optsEl = document.getElementById('quiz-options');
+    const labels = ['A', 'B', 'C', 'D'];
+    optsEl.innerHTML = qObj.opts.map((opt, i) => `
+      <button data-opt-idx="${i}" class="quiz-opt-btn w-full text-left px-4 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-sm text-slate-200 transition flex items-start gap-3">
+        <span class="font-mono font-bold text-xs px-2 py-0.5 rounded bg-slate-800 text-indigo-300 shrink-0">${labels[i]}</span>
+        <span>${opt}</span>
+      </button>
+    `).join('');
+
+    optsEl.querySelectorAll('.quiz-opt-btn').forEach(btn => {
+      btn.addEventListener('click', () => handleOptionSelect(Number(btn.dataset.optIdx)));
+    });
+
+    updateTimerDisplay();
+    quiz.timerHandle = setInterval(() => {
+      quiz.timerSec -= 1;
+      updateTimerDisplay();
+      if (quiz.timerSec <= 0) {
+        clearInterval(quiz.timerHandle);
+        quiz.skipped += 1;
+        showToast('Time up! Question skipped automatically.', 'warn');
+        advanceQuiz();
+      }
+    }, 1000);
+  }
+
+  function updateTimerDisplay() {
+    const m = Math.floor(quiz.timerSec / 60);
+    const s = quiz.timerSec % 60;
+    const timerEl = document.getElementById('quiz-timer');
+    timerEl.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    timerEl.className = quiz.timerSec <= 15
+      ? 'font-mono text-lg font-bold text-rose-400 animate-pulse'
+      : 'font-mono text-lg font-bold text-emerald-400';
+
+    const pct = Math.max(0, (quiz.timerSec / 90) * 100);
+    document.getElementById('quiz-timer-bar').style.width = `${pct}%`;
+  }
+
+  function handleOptionSelect(chosenIdx) {
+    if (quiz.answered) return;
+    quiz.answered = true;
+    clearInterval(quiz.timerHandle);
+
+    const qObj = quiz.questions[quiz.idx];
+    const isCorrect = chosenIdx === qObj.ans;
+    if (isCorrect) quiz.correct += 1;
+    else quiz.wrong += 1;
+
+    document.querySelectorAll('.quiz-opt-btn').forEach(btn => {
+      const idx = Number(btn.dataset.optIdx);
+      btn.disabled = true;
+      if (idx === qObj.ans) {
+        btn.className = 'quiz-opt-btn w-full text-left px-4 py-3.5 rounded-xl bg-emerald-500/20 border border-emerald-500 text-sm text-emerald-200 flex items-start gap-3';
+      } else if (idx === chosenIdx && !isCorrect) {
+        btn.className = 'quiz-opt-btn w-full text-left px-4 py-3.5 rounded-xl bg-rose-500/20 border border-rose-500 text-sm text-rose-200 flex items-start gap-3';
+      } else {
+        btn.className = 'quiz-opt-btn w-full text-left px-4 py-3.5 rounded-xl bg-slate-900/50 border border-slate-800 text-sm text-slate-500 flex items-start gap-3';
+      }
+    });
+
+    document.getElementById('quiz-feedback').textContent = isCorrect
+      ? 'Correct! +2.00 points earned.'
+      : `Incorrect! 3 wrong answers deduct 1 point (-0.33).`;
+    document.getElementById('next-q-btn').disabled = false;
+  }
+
+  function advanceQuiz() {
+    if (quiz.idx + 1 < quiz.questions.length) {
+      quiz.idx += 1;
+      renderQuizQuestion();
+    } else {
+      finishQuiz();
+    }
+  }
+
+  function finishQuiz() {
+    clearInterval(quiz.timerHandle);
+    document.getElementById('quiz-arena').classList.add('hidden');
+    document.getElementById('quiz-report').classList.remove('hidden');
+
+    const totalQ = quiz.questions.length;
+    const maxScore = totalQ * 2;
+    const positive = quiz.correct * 2;
+    const negative = Number((quiz.wrong / 3).toFixed(2));
+    const obtained = Number(Math.max(0, positive - negative).toFixed(2));
+    const attempted = quiz.correct + quiz.wrong;
+    const accuracy = attempted > 0 ? Number(((quiz.correct / attempted) * 100).toFixed(1)) : 0;
+    const pct = maxScore > 0 ? Number(((obtained / maxScore) * 100).toFixed(1)) : 0;
+
+    const user = getCurrentUser();
+    if (user) {
+      user.points = Number((user.points + obtained).toFixed(2));
+      user.attempts.push({
+        paper: quiz.paper.code,
+        score: obtained,
+        max: maxScore,
+        negative,
+        accuracy,
+        pct,
+        date: new Date().toISOString().slice(0, 10)
+      });
+      saveState();
+    }
+
+    const devAvg = user ? calcDevelopmentAvg(user) : pct;
+    document.getElementById('rep-paper').textContent = `${quiz.paper.code}: ${quiz.paper.name}`;
+    document.getElementById('rep-max').textContent = String(maxScore);
+    document.getElementById('rep-obtained').textContent = String(obtained);
+    document.getElementById('rep-negative').textContent = `-${negative}`;
+    document.getElementById('rep-accuracy').textContent = `${accuracy}%`;
+    document.getElementById('rep-dev').textContent = `${devAvg}%`;
+    document.getElementById('rep-breakdown').textContent =
+      `Summary: ${quiz.correct} Correct (+${positive}), ${quiz.wrong} Wrong (-${negative}), ${quiz.skipped} Auto-Skipped (0). Leaderboard updated dynamically!`;
+
+    showToast(`Quiz saved! +${obtained} points added to Leaderboard.`, 'success');
+  }
+
+  // ==============================
+  // 6. RESOURCES & 10 MOCK EXAMS
+  // ==============================
+  function renderResources() {
+    document.querySelectorAll('.rtab-btn').forEach(btn => {
+      if (btn.dataset.rtab === activeResourceTab) {
+        btn.className = 'rtab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-emerald-500 text-slate-950 transition';
+      } else {
+        btn.className = 'rtab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800 transition';
+      }
+    });
+
+    const container = document.getElementById('resources-content');
+    if (activeResourceTab === 'mock') {
+      renderMockExamTab(container);
+      return;
+    }
+
+    const items = state.resources[activeResourceTab] || [];
+    const inter = items.filter(x => x.level === 'CMA Intermediate');
+    const fin = items.filter(x => x.level === 'CMA Final');
+
+    const renderList = (title, list) => `
+      <div class="space-y-3">
+        <h3 class="font-display text-sm font-bold uppercase tracking-wider text-indigo-400">${title} (${list.length} Files)</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          ${list.map(item => `
+            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="glass-card rounded-xl p-4 hover:border-emerald-500/40 transition flex items-center justify-between gap-3">
+              <div class="text-xs sm:text-sm font-medium text-slate-200 leading-snug">${item.title}</div>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 shrink-0">Download ↗</span>
+            </a>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    container.innerHTML = renderList('CMA Intermediate', inter) + renderList('CMA Final', fin);
+  }
+
+  function renderMockExamTab(container) {
+    const allPapers = [...PAPERS['CMA Intermediate'], ...PAPERS['CMA Final']];
+    container.innerHTML = `
+      <div class="glass-card rounded-2xl p-5 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h3 class="font-display text-lg font-bold text-white">ICMAI Syllabus 2022 — 10 Mock Examination Sets</h3>
+            <p class="text-xs text-slate-400">Generated in exact Previous Year Question Paper format: Time Allowed 3 Hours • Full Marks 100 • Section A (15 MCQs × 2 = 30 Marks) + Section B (Any 5 of Q2–Q8 × 14 = 70 Marks).</p>
+          </div>
+          <button id="print-mock-btn" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition shrink-0">
+            Print / Save Mock PDF
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Select Paper</label>
+            <select id="mock-paper-select" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs sm:text-sm text-white">
+              ${allPapers.map(p => `<option value="${p.id}">${p.code} — ${p.name}</option>`).join('')}
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Select Mock Exam Set (1 to 10)</label>
+            <select id="mock-set-select" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs sm:text-sm text-white">
+              ${Array.from({ length: 10 }, (_, i) => `<option value="${i + 1}">Mock Examination #${i + 1} (ICMAI 2022 Pattern)</option>`).join('')}
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="mock-paper-sheet" class="glass-card rounded-2xl p-6 sm:p-8 space-y-6"></div>
+    `;
+
+    const drawMock = () => {
+      const pId = document.getElementById('mock-paper-select').value;
+      const setNum = Number(document.getElementById('mock-set-select').value);
+      const paper = allPapers.find(p => p.id === pId);
+      const bank = state.mcqs[paper.mcqPaper] || [];
+
+      // Deterministic rotation per Mock Set 1..10
+      const mcqs15 = [];
+      for (let i = 0; i < 15; i++) {
+        if (bank.length) {
+          mcqs15.push(bank[(i + (setNum - 1) * 3) % bank.length]);
+        }
+      }
+
+      const sheet = document.getElementById('mock-paper-sheet');
+      sheet.innerHTML = `
+        <div class="border-b border-slate-700 pb-4 text-center space-y-1">
+          <div class="text-xs font-mono uppercase tracking-widest text-emerald-400">Mock Examination Set #${setNum} • Syllabus 2022</div>
+          <h4 class="font-display text-xl font-bold text-white">${paper.code}: ${paper.name}</h4>
+          <div class="flex justify-center gap-6 text-xs text-slate-300 pt-1">
+            <span>Time Allowed: 3 Hours</span>
+            <span>Full Marks: 100</span>
+          </div>
+          <p class="text-[11px] text-slate-400 italic pt-1">Answer Question No. 1 which is compulsory and any FIVE from Question No. 2 to Question No. 8.</p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <h5 class="font-display font-bold text-emerald-400 text-sm uppercase">Section - A (Compulsory) — 1. Choose the correct answer</h5>
+            <span class="font-mono text-xs text-slate-400">2 × 15 = 30 Marks</span>
+          </div>
+          <div class="space-y-3">
+            ${mcqs15.map((m, idx) => `
+              <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-3.5 text-xs sm:text-sm space-y-1.5">
+                <div class="font-medium text-white">(${idx + 1}) ${m.q}</div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 text-slate-300 text-xs">
+                  <div>(A) ${m.opts[0]}</div>
+                  <div>(B) ${m.opts[1]}</div>
+                  <div>(C) ${m.opts[2]}</div>
+                  <div>(D) ${m.opts[3]}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="space-y-3 pt-4 border-t border-slate-800">
+          <div class="flex items-center justify-between">
+            <h5 class="font-display font-bold text-indigo-400 text-sm uppercase">Section - B (Answer any FIVE from Q.2 to Q.8)</h5>
+            <span class="font-mono text-xs text-slate-400">14 × 5 = 70 Marks</span>
+          </div>
+          <div class="space-y-2.5 text-xs sm:text-sm text-slate-300">
+            <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800"><strong>Q.2 (a) &amp; (b) [7+7=14]:</strong> Explain core statutory/conceptual provisions and practical application from ${paper.name} (Module 1 &amp; 2).</div>
+            <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800"><strong>Q.3 (a) &amp; (b) [7+7=14]:</strong> Analyse procedural compliance, valuation rules, or computation methodology under ${paper.code}.</div>
+            <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800"><strong>Q.4 (a) &amp; (b) [7+7=14]:</strong> Solve the practical numerical / statutory case problem integrating current ICMAI Syllabus 2022 amendments.</div>
+            <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800"><strong>Q.5 (a) &amp; (b) [7+7=14]:</strong> Distinguish between key frameworks, disclosures, or accounting/costing treatments in ${paper.name}.</div>
+            <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800"><strong>Q.6 (a) &amp; (b) [7+7=14]:</strong> Case Study: Evaluate management/legal decision-making with supporting principles (IRAC / Step-by-Step working notes).</div>
+            <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800"><strong>Q.7 (a) &amp; (b) [7+7=14]:</strong> Discuss strategic, governance, or reporting standards and contemporary challenges in ${paper.name}.</div>
+            <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800"><strong>Q.8 (a) &amp; (b) [7+7=14]:</strong> Comprehensive problem &amp; short notes on emerging ICMAI Syllabus 2022 topics (Mock Set #${setNum}).</div>
+          </div>
+        </div>
+      `;
+    };
+
+    document.getElementById('mock-paper-select').addEventListener('change', drawMock);
+    document.getElementById('mock-set-select').addEventListener('change', drawMock);
+    document.getElementById('print-mock-btn').addEventListener('click', () => window.print());
+    drawMock();
+  }
+
+  // ==============================
+  // 7. PUBLIC MODERATED CHAT
+  // ==============================
+  function moderateText(text) {
+    const lower = text.toLowerCase();
+    for (const word of MODERATION_WORDS) {
+      if (lower.includes(word)) {
+        return { ok: false, reason: `Blocked by AI Moderation: inappropriate or sensitive keyword detected.` };
+      }
+    }
+    if (/\b\d{10,12}\b/.test(text)) {
+      return { ok: false, reason: 'Blocked by AI Moderation: sharing personal phone/ID numbers is prohibited.' };
+    }
+    return { ok: true };
+  }
+
+  function compressImage(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = ev => {
+        const img = new Image();
+        img.onload = () => {
+          const maxW = 640;
+          const scale = Math.min(1, maxW / img.width);
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.round(img.width * scale);
+          canvas.height = Math.round(img.height * scale);
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.55);
+          const kb = Math.round((dataUrl.length * 3) / 4 / 1024);
+          resolve({ dataUrl, kb });
+        };
+        img.onerror = reject;
+        img.src = ev.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function renderChat() {
+    const box = document.getElementById('chat-messages');
+    box.innerHTML = state.chat.map(m => `
+      <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 space-y-1.5">
+        <div class="flex items-center justify-between text-[11px]">
+          <span class="font-bold text-emerald-400">${m.userName} <span class="font-mono text-slate-500">(${m.userId})</span></span>
+          <span class="text-slate-500 font-mono">${m.ts}</span>
+        </div>
+        ${m.text ? `<p class="text-xs sm:text-sm text-slate-200">${m.text.replace(/</g, '&lt;')}</p>` : ''}
+        ${m.img ? `<img src="${m.img}" alt="Student doubt attachment" class="max-w-xs rounded-lg border border-slate-700 mt-1" />` : ''}
+      </div>
+    `).join('');
+    box.scrollTop = box.scrollHeight;
+  }
+
+  // ==============================
+  // 8. LEADERBOARD & ADMIN
+  // ==============================
+  function renderLeaderboard() {
+    const sorted = [...state.users].sort((a, b) => b.points - a.points);
+    const body = document.getElementById('leaderboard-body');
+    body.innerHTML = sorted.map((u, i) => `
+      <tr class="hover:bg-slate-900/60 transition">
+        <td class="py-3.5 px-4 font-display font-bold ${i === 0 ? 'text-amber-400' : i === 1 ? 'text-slate-300' : 'text-slate-400'}">#${i + 1}</td>
+        <td class="py-3.5 px-4 font-semibold text-white">${u.name}</td>
+        <td class="py-3.5 px-4 font-mono text-xs text-emerald-400">${u.id}</td>
+        <td class="py-3.5 px-4 text-xs text-slate-300">${u.level}</td>
+        <td class="py-3.5 px-4 text-right font-mono text-xs text-slate-300">${u.attempts.length}</td>
+        <td class="py-3.5 px-4 text-right font-mono text-xs text-indigo-300">${calcDevelopmentAvg(u)}%</td>
+        <td class="py-3.5 px-4 text-right font-display font-bold text-emerald-400">${u.points.toFixed(1)}</td>
+      </tr>
+    `).join('');
+  }
+
+  function renderAdmin() {
+    if (!adminUnlocked) {
+      document.getElementById('admin-lock').classList.remove('hidden');
+      document.getElementById('admin-panel').classList.add('hidden');
+      return;
+    }
+    document.getElementById('admin-lock').classList.add('hidden');
+    document.getElementById('admin-panel').classList.remove('hidden');
+
+    const sel = document.getElementById('adm-mcq-paper');
+    const paperKeys = Object.keys(state.mcqs);
+    sel.innerHTML = paperKeys.map(k => `<option value="${k}">${k} (${state.mcqs[k].length} MCQs)</option>`).join('');
+    document.getElementById('cloud-endpoint-input').value = state.cloudEndpoint || '';
+  }
+
+  // ==============================
+  // 9. EVENT LISTENERS
+  // ==============================
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => switchView(btn.dataset.view));
+  });
+
+  document.querySelectorAll('.quick-jump').forEach(btn => {
+    btn.addEventListener('click', () => switchView(btn.dataset.jump));
+  });
+
+  document.getElementById('go-subjects-btn').addEventListener('click', () => switchView('subjects'));
+
+  document.getElementById('lvl-inter-btn').addEventListener('click', () => {
+    document.getElementById('lvl-inter-btn').dataset.manual = '1';
+    selectedLevelTab = 'CMA Intermediate';
+    renderSubjects();
+  });
+
+  document.getElementById('lvl-final-btn').addEventListener('click', () => {
+    document.getElementById('lvl-inter-btn').dataset.manual = '1';
+    selectedLevelTab = 'CMA Final';
+    renderSubjects();
+  });
+
+  document.querySelectorAll('.rtab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeResourceTab = btn.dataset.rtab;
+      renderResources();
+    });
+  });
+
+  document.getElementById('register-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('reg-name').value.trim();
+    const gender = document.getElementById('reg-gender').value;
+    const dob = document.getElementById('reg-dob').value;
+    const level = document.getElementById('reg-level').value;
+    const email = document.getElementById('reg-email').value.trim();
+
+    const prefix = level === 'CMA Final' ? 'CMA-FIN-2026' : 'CMA-INT-2026';
+    const rand = Math.floor(1000 + Math.random() * 8999);
+    const uid = `${prefix}-${rand}`;
+
+    const newUser = { id: uid, name, gender, dob, level, email, points: 0, attempts: [], seenMcqs: [] };
+    state.users.push(newUser);
+    state.currentUserId = uid;
+    saveState();
+    showToast(`Registered! Your Unique ID is ${uid}`, 'success');
+    renderDashboard();
+  });
+
+  document.getElementById('login-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const uid = document.getElementById('login-id').value.trim().toUpperCase();
+    const dob = document.getElementById('login-dob').value;
+    const found = state.users.find(u => u.id.toUpperCase() === uid && u.dob === dob);
+    if (!found) {
+      showToast('Invalid Unique ID or Date of Birth.', 'error');
+      return;
+    }
+    state.currentUserId = found.id;
+    saveState();
+    showToast(`Welcome back, ${found.name}!`, 'success');
+    renderDashboard();
+  });
+
+  document.getElementById('demo-login-btn').addEventListener('click', () => {
+    state.currentUserId = 'CMA-INT-2026-1001';
+    saveState();
+    showToast('Logged in as Demo Student (Anujith B Krishna).', 'success');
+    renderDashboard();
+  });
+
+  document.getElementById('logout-btn').addEventListener('click', () => {
+    clearInterval(quiz.timerHandle);
+    state.currentUserId = null;
+    saveState();
+    showToast('Logged out safely. Your data remains backed up.', 'info');
+    switchView('dashboard');
+  });
+
+  document.getElementById('next-q-btn').addEventListener('click', advanceQuiz);
+  document.getElementById('quit-quiz-btn').addEventListener('click', () => {
+    clearInterval(quiz.timerHandle);
+    document.getElementById('quiz-arena').classList.add('hidden');
+    document.getElementById('subject-picker').classList.remove('hidden');
+  });
+  document.getElementById('rep-back-btn').addEventListener('click', () => {
+    document.getElementById('quiz-report').classList.add('hidden');
+    document.getElementById('subject-picker').classList.remove('hidden');
+    renderSubjects();
+  });
+
+  document.getElementById('chat-image').addEventListener('change', async e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    try {
+      const { dataUrl, kb } = await compressImage(file);
+      pendingChatImg = dataUrl;
+      document.getElementById('chat-img-info').textContent = `Compressed image ready (${kb} KB)`;
+      document.getElementById('chat-img-preview').classList.remove('hidden');
+    } catch (err) {
+      showToast('Could not process image.', 'error');
+    }
+  });
+
+  document.getElementById('clear-chat-img').addEventListener('click', () => {
+    pendingChatImg = null;
+    document.getElementById('chat-image').value = '';
+    document.getElementById('chat-img-preview').classList.add('hidden');
+  });
+
+  document.getElementById('chat-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const user = getCurrentUser();
+    if (!user) {
+      showToast('Please login first to post in Doubt Clearance Chat.', 'warn');
+      return;
+    }
+    const text = document.getElementById('chat-input').value.trim();
+    if (!text && !pendingChatImg) return;
+
+    const mod = moderateText(text);
+    if (!mod.ok) {
+      showToast(mod.reason, 'error');
+      return;
+    }
+
+    state.chat.push({
+      id: `msg-${Date.now()}`,
+      userName: user.name,
+      userId: user.id,
+      text,
+      img: pendingChatImg,
+      ts: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    });
+    document.getElementById('chat-input').value = '';
+    pendingChatImg = null;
+    document.getElementById('chat-image').value = '';
+    document.getElementById('chat-img-preview').classList.add('hidden');
+    saveState();
+    renderChat();
+  });
+
+  document.getElementById('admin-login-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const pass = document.getElementById('admin-pass').value;
+    if (pass === 'Akku@132004') {
+      adminUnlocked = true;
+      document.getElementById('admin-pass').value = '';
+      showToast('Admin panel unlocked.', 'success');
+      renderAdmin();
+    } else {
+      showToast('Incorrect admin password.', 'error');
+    }
+  });
+
+  document.getElementById('admin-lock-btn').addEventListener('click', () => {
+    adminUnlocked = false;
+    renderAdmin();
+  });
+
+  document.getElementById('admin-add-mcq-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const p = document.getElementById('adm-mcq-paper').value;
+    const q = document.getElementById('adm-mcq-q').value.trim();
+    const opts = [
+      document.getElementById('adm-opt-0').value.trim(),
+      document.getElementById('adm-opt-1').value.trim(),
+      document.getElementById('adm-opt-2').value.trim(),
+      document.getElementById('adm-opt-3').value.trim()
+    ];
+    const ans = Number(document.getElementById('adm-mcq-ans').value);
+    if (!state.mcqs[p]) state.mcqs[p] = [];
+    state.mcqs[p].push({ q, opts, ans });
+    saveState();
+    e.target.reset();
+    showToast(`Added MCQ to ${p} live!`, 'success');
+    renderAdmin();
+  });
+
+  document.getElementById('admin-add-res-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const cat = document.getElementById('adm-res-cat').value;
+    const level = document.getElementById('adm-res-level').value;
+    const title = document.getElementById('adm-res-title').value.trim();
+    const url = document.getElementById('adm-res-url').value.trim();
+    state.resources[cat].unshift({ level, title, url });
+    saveState();
+    e.target.reset();
+    showToast('Resource added to Resources Hub!', 'success');
+  });
+
+  document.getElementById('save-cloud-btn').addEventListener('click', () => {
+    state.cloudEndpoint = document.getElementById('cloud-endpoint-input').value.trim();
+    saveState();
+    showToast('Cloud Sync endpoint saved.', 'success');
+  });
+
+  document.getElementById('export-backup-btn').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `cma_master_backup_${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+  });
+
+  // Boot
+  switchView('dashboard');
+})();
+</script>
+</body>
+</html>
+```
